@@ -98,11 +98,14 @@ public class MaterialConstructorTest {
         Set<String> knownWords = new HashSet<>(Arrays.asList(new String[]{"I", "am", "cat"}));
         Vocabulary vocabulary = new Vocabulary(knownWords);
         User user = new User(vocabulary);
+        MaterialConstructor constructor = new MaterialConstructor(user);
 
+        String sourceText = "I am admirable cat!";
 
-
-
-//        assertThat();
+        LinkedHashMap<String, String> dictionary = new LinkedHashMap<>();
+        dictionary.put("admirable", "восхитительный");
+        TrainingMaterial expectedTrainingMaterial = new TrainingMaterial(sourceText, dictionary);
+        assertThat(constructor.createTextWitnNewWords(sourceText), is(expectedTrainingMaterial));
     }
 
 }
