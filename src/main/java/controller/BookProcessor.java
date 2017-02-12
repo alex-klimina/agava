@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static data.OutputConstractor.makeTextWithDictionary;
-
 public class BookProcessor extends HttpServlet {
 
     @Override
@@ -28,7 +26,7 @@ public class BookProcessor extends HttpServlet {
         String fileContent = IOUtils.toString(req.getPart("fileupload").getInputStream(), StandardCharsets.UTF_8);
         String dictionary = "";
 
-        String result = makeTextWithDictionary(fileContent, dictionary);
+//        String result = makeTextWithDictionary(fileContent, dictionary);
 
         req.setAttribute("result", fileContent);
 
