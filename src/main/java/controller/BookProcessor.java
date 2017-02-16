@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
 
 public class BookProcessor extends HttpServlet {
 
@@ -32,9 +32,7 @@ public class BookProcessor extends HttpServlet {
         TrainingMaterial result = constructor.createTextWitnNewWords(fileContent);
 
         String text = result.getText();
-        String hints = result.getDictionary().entrySet().stream()
-                .map(e -> "<b>" +e.getKey() + "</b>" + " - " + e.getValue())
-                .collect(Collectors.joining("<br>"));
+        LinkedHashMap<String, String> hints = result.getDictionary();
 
         req.setAttribute("resultText", text);
         req.setAttribute("resultHints", hints);

@@ -17,6 +17,7 @@ dependencies {
     compile 'commons-io:commons-io:2.5'
     compile 'com.fasterxml.jackson.core:jackson-core:2.8.6'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
+    compile 'javax.servlet:jstl:1.2'
 
     compileOnly 'org.projectlombok:lombok:+'
 

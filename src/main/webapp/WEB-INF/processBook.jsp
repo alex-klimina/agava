@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Book Processor</title>
@@ -18,13 +19,13 @@
 <form id="uploadBook" enctype="multipart/form-data" method="post" action="#">
     <table align="center">
         <tr>
-            <td>User: </td>
+            <td>User:</td>
             <td>
                 <input name="username" placeholder="alkli">
             </td>
         </tr>
         <tr>
-            <td>File witn text: </td>
+            <td>File witn text:</td>
             <td><input name="fileupload" type="file"/></td>
         </tr>
         <tr>
@@ -34,14 +35,13 @@
     </table>
 </form>
 
-<table align="center">
-    <tr>
-        <td>${resultText}</td>
-    </tr>
-    <tr>
-        <td>${resultHints}</td>
-    </tr>
-</table>
+${resultText}
+<br>
+<br>
+<c:forEach items="${resultHints}" var="entry">
+    <b>${entry.key}&nbsp;</b>
+    ${entry.value}<br>
+</c:forEach>
 
 </body>
 </html>
