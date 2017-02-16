@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MaterialConstructor {
     private User user;
+    private Translator translator;
 
     public TrainingMaterial createTextWitnNewWords(String sourceText) {
         List<String> unknownWords = getUnknownWords(sourceText, user.getVocabulary());
@@ -25,7 +26,7 @@ public class MaterialConstructor {
         return material;
     }
 
-    static LinkedHashMap<String, String> createDictionaryWithWords(List<String> unknownWords) {
+    LinkedHashMap<String, String> createDictionaryWithWords(List<String> unknownWords) {
         LinkedHashMap<String, String> dictionary = new LinkedHashMap<>(unknownWords.size());
         for (String word: unknownWords) {
             dictionary.put(word, findTranslation(word));
@@ -33,8 +34,8 @@ public class MaterialConstructor {
         return dictionary;
     }
 
-    private static String findTranslation(String word) {
-        return Translator.translate(word);
+    private String findTranslation(String word) {
+        return translator.translate(word);
     }
 
     static List<String> getUnknownWords(String sourceText, Vocabulary vocabulary) {

@@ -3,6 +3,7 @@ package controller;
 import data.TrainingMaterial;
 import org.apache.commons.io.IOUtils;
 import processing.MaterialConstructor;
+import processing.TranslatorYandex;
 import users.User;
 
 import javax.servlet.ServletException;
@@ -27,16 +28,17 @@ public class BookProcessor extends HttpServlet {
         String userName = (String) req.getAttribute("userName");
         String fileContent = IOUtils.toString(req.getPart("fileupload").getInputStream(), StandardCharsets.UTF_8);
 
-        MaterialConstructor constructor = new MaterialConstructor(User.DEFAULT_USER);
+        MaterialConstructor constructor = new MaterialConstructor(User.DEFAULT_USER, new TranslatorYandex());
 
         TrainingMaterial result = constructor.createTextWitnNewWords(fileContent);
 
         String text = result.getText();
         String hints = result.getDictionary().entrySet().stream()
-                .map(e -> e.getKey() + " - " + e.getValue())
+                .map(e -> "<b>" +e.getKey() + "</b>" + " - " + e.getValue())
                 .collect(Collectors.joining("<br>"));
 
-        req.setAttribute("result", text + "<br><br>" + hints);
+        req.setAttribute("resultText", text);
+        req.setAttribute("resultHints", hints);
         req.getRequestDispatcher("/WEB-INF/processBook.jsp").forward(req, resp);
     }
 

@@ -11,7 +11,8 @@ import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static processing.MaterialConstructor.*;
+import static processing.MaterialConstructor.deletePunctuationMarks;
+import static processing.MaterialConstructor.getUnknownWords;
 
 public class MaterialConstructorTest {
 
@@ -24,7 +25,7 @@ public class MaterialConstructorTest {
         User user = new User(vocabulary);
         String sourceText = "Cheba is the capital of the Cheburashka Kingdom.";
 
-        MaterialConstructor constructor = new MaterialConstructor(user);
+        MaterialConstructor constructor = new MaterialConstructor(user, new Translator());
         TrainingMaterial trainingMaterial = constructor.createTextWitnNewWords(sourceText);
 
         LinkedHashMap<String, String> dictionary = new LinkedHashMap<>();
@@ -81,7 +82,8 @@ public class MaterialConstructorTest {
     @Test
     public void shouldCreateDictionaryForGivenWords() {
         List<String> unknownWords = Arrays.asList("capital", "cheburashka");
-        LinkedHashMap<String, String> dictionary = createDictionaryWithWords(unknownWords);
+//        delete this horror
+        LinkedHashMap<String, String> dictionary = new MaterialConstructor(User.DEFAULT_USER, new Translator()).createDictionaryWithWords(unknownWords);
 
         LinkedHashMap<String, String> expectedDictionary = new LinkedHashMap<>();
         expectedDictionary.put("capital", "главный, основной, высший");
@@ -95,7 +97,7 @@ public class MaterialConstructorTest {
         Set<String> knownWords = new HashSet<>(Arrays.asList(new String[]{"I", "am", "cat"}));
         Vocabulary vocabulary = new Vocabulary(knownWords);
         User user = new User(vocabulary);
-        MaterialConstructor constructor = new MaterialConstructor(user);
+        MaterialConstructor constructor = new MaterialConstructor(user, new Translator());
 
         String sourceText = "I am admirable cat!";
 

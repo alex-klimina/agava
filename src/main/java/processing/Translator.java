@@ -48,10 +48,9 @@ public class Translator {
         return new Pair<>(origin.trim(), transtlation.trim());
     }
 
-
-    public static String translate(String word) {
+    protected String translate(String word) {
         if (DICTIONARY.containsKey(word.toLowerCase())) {
-            return DICTIONARY.get(word);
+            return DICTIONARY.get(word.toLowerCase());
         } else {
             return "перевод не найден";
         }

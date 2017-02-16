@@ -19,7 +19,14 @@
         <input type="submit" value="submit"/>
     </form>
 
-    ${result}
+    <table align="center">
+        <tr>
+            <td>${resultText}</td>
+        </tr>
+        <tr>
+            <td>${resultHints}</td>
+        </tr>
+    </table>
 
 </body>
 </html>
