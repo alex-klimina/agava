@@ -34,7 +34,7 @@ public class Translator {
         }
     }
 
-    static Pair<String, String> createPair(String string) {
+    private static Pair<String, String> createPair(String string) {
         Pattern pattern = Pattern.compile("[^-]*");
         Matcher matcher = pattern.matcher(string);
 
@@ -50,7 +50,7 @@ public class Translator {
 
 
     public static String translate(String word) {
-        if (DICTIONARY.containsKey(word)) {
+        if (DICTIONARY.containsKey(word.toLowerCase())) {
             return DICTIONARY.get(word);
         } else {
             return "перевод не найден";

@@ -2,17 +2,18 @@ package processing;
 
 import data.TrainingMaterial;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import users.User;
 import users.Vocabulary;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
 @AllArgsConstructor
 public class MaterialConstructor {
-    User user;
+    private User user;
 
     public TrainingMaterial createTextWitnNewWords(String sourceText) {
         List<String> unknownWords = getUnknownWords(sourceText, user.getVocabulary());

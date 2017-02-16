@@ -7,21 +7,18 @@ import org.junit.Test;
 import users.User;
 import users.Vocabulary;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.*;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-import static processing.MaterialConstructor.deletePunctuationMarks;
-import static processing.MaterialConstructor.getUnknownWords;
-import static processing.MaterialConstructor.createDictionaryWithWords;
+import static org.junit.Assert.assertThat;
+import static processing.MaterialConstructor.*;
 
 public class MaterialConstructorTest {
 
     @Test
     public void shouldCreateTrainingMaterialForUserAndText() {
 //        London is the capital of the United Kingdom.
-        Set<String> knownWords = new TreeSet(
+        Set<String> knownWords = new TreeSet<>(
                 Arrays.asList("Cheba is the of the Kingdom".split(" ")));
         Vocabulary vocabulary = new Vocabulary(knownWords);
         User user = new User(vocabulary);
