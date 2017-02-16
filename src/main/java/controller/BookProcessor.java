@@ -24,7 +24,6 @@ public class BookProcessor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("greeting", "Mumble mumble!");
         String userName = (String) req.getAttribute("userName");
         String fileContent = IOUtils.toString(req.getPart("fileupload").getInputStream(), StandardCharsets.UTF_8);
 

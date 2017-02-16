@@ -11,22 +11,37 @@
     <title>Book Processor</title>
 </head>
 <body>
-    ${greeting}
 
-    <form id="uploadBook" enctype="multipart/form-data" method="post" action="#">
-        <input name="username" placeholder="alkli">
-        <input name="fileupload" type="file" />
-        <input type="submit" value="submit"/>
-    </form>
+<p align="center">AGAVA</p>
+<br>
 
+<form id="uploadBook" enctype="multipart/form-data" method="post" action="#">
     <table align="center">
         <tr>
-            <td>${resultText}</td>
+            <td>User: </td>
+            <td>
+                <input name="username" placeholder="alkli">
+            </td>
         </tr>
         <tr>
-            <td>${resultHints}</td>
+            <td>File witn text: </td>
+            <td><input name="fileupload" type="file"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="submit"/></td>
         </tr>
     </table>
+</form>
+
+<table align="center">
+    <tr>
+        <td>${resultText}</td>
+    </tr>
+    <tr>
+        <td>${resultHints}</td>
+    </tr>
+</table>
 
 </body>
 </html>
